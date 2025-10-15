@@ -28,10 +28,10 @@ const StretchApp = () => {
       { name: "Triceps Stretch", duration: "45 seconds each side", description: "Reach arm overhead, bend elbow, use other hand to gently pull elbow.", benefit: "Shoulder and arm flexibility" },
       { name: "Eagle Arms", duration: "45 seconds each side", description: "Wrap arms around each other, lift elbows, feel stretch between shoulder blades.", benefit: "Upper back and shoulder mobility" },
       { name: "Lat Stretch", duration: "45 seconds each side", description: "Reach arm overhead, lean to opposite side, feel stretch along side body.", benefit: "Improves shoulder mobility and side bend" },
-      { name: "Sleeper Stretch", duration: "45 seconds each side", description: "Lie on side, arm at 90 degrees, use other hand to rotate palm toward floor.", benefit: "Internal shoulder rotation for golf backswing" }
+      { name: "Sleeper Stretch", duration: "45 seconds each side", description: "Lie on side, arm at 90 degrees, use other hand to rotate palm toward floor.", benefit: "Improves internal shoulder rotation" },
     ],
     spineStretches: [
-      { name: "Seated Spinal Twist", duration: "60 seconds each side", description: "Sit with legs extended, cross one leg over, twist toward bent knee.", benefit: "Critical for golf swing rotation and desk stiffness" },
+      { name: "Seated Spinal Twist", duration: "60 seconds each side", description: "Sit with legs extended, cross one leg over, twist toward bent knee.", benefit: "Improves spinal mobility and relieves desk stiffness" },
       { name: "Cat-Cow Stretch", duration: "10 slow repetitions", description: "On hands and knees, alternate arching and rounding back with breath.", benefit: "Mobilizes entire spine, relieves back tension" },
       { name: "Child Pose with Lateral Reach", duration: "45 seconds each side", description: "In child pose, walk hands to one side to stretch opposite side body.", benefit: "Lengthens side muscles for better rotation" },
       { name: "Supine Twist", duration: "60 seconds each side", description: "Lie on back, drop knees to one side, extend arms out, look opposite direction.", benefit: "Gentle spinal rotation and recovery" },
@@ -42,9 +42,9 @@ const StretchApp = () => {
     ],
     dynamicStretches: [
       { name: "World Greatest Stretch", duration: "5 reps each side", description: "Lunge forward, drop elbow to instep, rotate up reaching to sky. Hold each position 3 seconds.", benefit: "Combines hip, spine, and shoulder mobility" },
-      { name: "Torso Rotation with Arms Extended", duration: "15 slow rotations each way", description: "Stand with arms extended forward, rotate torso slowly side to side mimicking golf posture.", benefit: "Rehearses golf swing movement pattern" },
-      { name: "Walking Lunges with Twist", duration: "10 steps each leg", description: "Lunge forward, twist torso toward front leg, hands at chest.", benefit: "Dynamic hip and spine mobility for golf" },
-      { name: "Arm Circles", duration: "10 forward, 10 backward", description: "Large controlled circles with straight arms, gradually increase range.", benefit: "Warms up shoulders, improves range for golf swing" },
+      { name: "Torso Rotation with Arms Extended", duration: "15 slow rotations each way", description: "Stand with arms extended forward, rotate torso slowly side to side.", benefit: "Improves rotational mobility and coordination" },
+      { name: "Walking Lunges with Twist", duration: "10 steps each leg", description: "Lunge forward, twist torso toward front leg, hands at chest.", benefit: "Dynamic hip and spine mobility" },
+      { name: "Arm Circles", duration: "10 forward, 10 backward", description: "Large controlled circles with straight arms, gradually increase range.", benefit: "Warms up shoulders and improves range of motion" },
       { name: "Leg Swings", duration: "10 each direction per leg", description: "Hold support, swing leg forward and back and side to side.", benefit: "Dynamic hip mobility" },
       { name: "Inchworms", duration: "10 repetitions", description: "Bend at waist, walk hands out to plank, walk feet to hands.", benefit: "Full body dynamic stretch" },
       { name: "Spiderman Lunges", duration: "10 each side", description: "Plank position, step foot outside of hand, hold and reach up.", benefit: "Hip mobility and rotation" },
@@ -238,14 +238,14 @@ const StretchApp = () => {
   const progress = activeSection === 'stretches' ? stretchProgress : cardioProgress;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-2">
-            <Target className="w-10 h-10 text-green-600" />
+            <Target className="w-10 h-10 text-blue-600" />
             <h1 className="text-4xl font-bold text-gray-800">Daily Fitness Routine</h1>
           </div>
-          <p className="text-gray-600 text-lg">Flexibility + Cardio Strength for Office & Golf</p>
+          <p className="text-gray-600 text-lg">Flexibility + Cardio Strength for Better Health</p>
           <div className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-500">
             <RotateCw className="w-4 h-4" />
             <span>Cycle {currentWeek} - New exercises every 6 weeks</span>
@@ -268,7 +268,7 @@ const StretchApp = () => {
                 }}
                 className={`px-3 py-2 rounded-lg font-medium transition-all text-sm ${
                   currentDay === index
-                    ? 'bg-green-600 text-white shadow-md scale-105'
+                    ? 'bg-blue-600 text-white shadow-md scale-105'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -285,7 +285,7 @@ const StretchApp = () => {
                 onClick={() => setActiveSection('stretches')}
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
                   activeSection === 'stretches'
-                    ? 'bg-green-600 text-white shadow-md'
+                    ? 'bg-blue-600 text-white shadow-md'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -296,7 +296,7 @@ const StretchApp = () => {
                 onClick={() => setActiveSection('cardio')}
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
                   activeSection === 'cardio'
-                    ? 'bg-blue-600 text-white shadow-md'
+                    ? 'bg-orange-600 text-white shadow-md'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -307,7 +307,7 @@ const StretchApp = () => {
           </div>
 
           <p className={`text-center font-medium flex items-center justify-center gap-2 mb-4 ${
-            activeSection === 'stretches' ? 'text-green-700' : 'text-blue-700'
+            activeSection === 'stretches' ? 'text-green-700' : 'text-orange-700'
           }`}>
             {activeSection === 'stretches' ? <Target className="w-4 h-4" /> : <Dumbbell className="w-4 h-4" />}
             {activeSection === 'stretches' ? currentProgram.stretchFocus : currentProgram.cardioFocus}
@@ -325,7 +325,7 @@ const StretchApp = () => {
                 className={`h-full transition-all duration-500 rounded-full flex items-center justify-end pr-2 ${
                   activeSection === 'stretches' 
                     ? 'bg-gradient-to-r from-green-500 to-green-600' 
-                    : 'bg-gradient-to-r from-blue-500 to-blue-600'
+                    : 'bg-gradient-to-r from-orange-500 to-red-600'
                 }`}
                 style={{ width: `${progress}%` }}
               >
@@ -350,7 +350,7 @@ const StretchApp = () => {
                   isCompleted 
                     ? activeSection === 'stretches' 
                       ? 'ring-2 ring-green-500 shadow-green-100' 
-                      : 'ring-2 ring-blue-500 shadow-blue-100'
+                      : 'ring-2 ring-orange-500 shadow-orange-100'
                     : ''
                 }`}
               >
@@ -363,7 +363,7 @@ const StretchApp = () => {
                       <div className={`flex items-center gap-2 font-semibold px-3 py-1 rounded-lg inline-flex ${
                         activeSection === 'stretches'
                           ? 'text-green-600 bg-green-50'
-                          : 'text-blue-600 bg-blue-50'
+                          : 'text-orange-600 bg-orange-50'
                       }`}>
                         <Clock className="w-4 h-4" />
                         <span>{activity.duration}</span>
@@ -375,7 +375,7 @@ const StretchApp = () => {
                         isCompleted
                           ? activeSection === 'stretches'
                             ? 'bg-green-600 text-white hover:bg-green-700'
-                            : 'bg-blue-600 text-white hover:bg-blue-700'
+                            : 'bg-orange-600 text-white hover:bg-orange-700'
                           : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
                       }`}
                     >
@@ -395,11 +395,11 @@ const StretchApp = () => {
                     <div className={`rounded-lg p-4 border-l-4 ${
                       activeSection === 'stretches'
                         ? 'bg-gradient-to-r from-blue-50 to-green-50 border-green-500'
-                        : 'bg-gradient-to-r from-blue-50 to-purple-50 border-blue-500'
+                        : 'bg-gradient-to-r from-orange-50 to-red-50 border-orange-500'
                     }`}>
                       <p className="text-sm font-medium text-gray-700">
                         <span className={`font-bold ${
-                          activeSection === 'stretches' ? 'text-green-700' : 'text-blue-700'
+                          activeSection === 'stretches' ? 'text-green-700' : 'text-orange-700'
                         }`}>
                           💪 Why:
                         </span> {activity.benefit}
@@ -447,7 +447,7 @@ const StretchApp = () => {
 
         <div className={`mt-8 rounded-xl shadow-xl p-6 text-white ${
           activeSection === 'stretches'
-            ? 'bg-gradient-to-r from-green-600 to-blue-600'
+            ? 'bg-gradient-to-r from-blue-600 to-blue-700'
             : 'bg-gradient-to-r from-orange-500 to-red-600'
         }`}>
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
