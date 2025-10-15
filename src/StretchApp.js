@@ -11,20 +11,20 @@ const StretchApp = () => {
 
   const exerciseLibrary = {
     lowerBodyStretches: [
-      { name: "Hip Flexor Stretch", duration: "45 seconds each side", description: "Kneel on one knee, push hips forward gently while keeping back straight.", benefit: "Counteracts tight hips from sitting, improves golf stance" },
-      { name: "90/90 Hip Stretch", duration: "60 seconds each side", description: "Sit with front leg at 90 degrees, back leg at 90 degrees behind you. Lean forward over front leg gently.", benefit: "Essential for golf rotation and hip mobility" },
-      { name: "Standing Hamstring Stretch", duration: "45 seconds each leg", description: "Place heel on low surface, keep leg straight, lean forward from hips.", benefit: "Reduces lower back strain during swing and sitting" },
-      { name: "Figure-4 Glute Stretch", duration: "60 seconds each side", description: "Lying down, cross ankle over opposite knee, pull thigh toward chest.", benefit: "Relieves lower back tension and improves rotation" },
-      { name: "Pigeon Pose", duration: "90 seconds each side", description: "Front leg bent at 90 degrees, back leg extended, lean forward over front leg.", benefit: "Deep hip opener for golf rotation" },
+      { name: "Hip Flexor Stretch", duration: "45 seconds each side", description: "Kneel on one knee, push hips forward gently while keeping back straight.", benefit: "Counteracts tight hips from sitting and improves posture" },
+      { name: "90/90 Hip Stretch", duration: "60 seconds each side", description: "Sit with front leg at 90 degrees, back leg at 90 degrees behind you. Lean forward over front leg gently.", benefit: "Essential for hip mobility and rotation" },
+      { name: "Standing Hamstring Stretch", duration: "45 seconds each leg", description: "Place heel on low surface, keep leg straight, lean forward from hips.", benefit: "Reduces lower back strain and improves flexibility" },
+      { name: "Figure-4 Glute Stretch", duration: "60 seconds each side", description: "Lying down, cross ankle over opposite knee, pull thigh toward chest.", benefit: "Relieves lower back tension and improves hip mobility" },
+      { name: "Pigeon Pose", duration: "90 seconds each side", description: "Front leg bent at 90 degrees, back leg extended, lean forward over front leg.", benefit: "Deep hip opener for improved flexibility" },
       { name: "Butterfly Stretch", duration: "90 seconds", description: "Sit with soles of feet together, gently press knees toward floor.", benefit: "Opens inner hips and groin" },
       { name: "Couch Stretch", duration: "60 seconds each side", description: "Back shin against wall, front foot forward in lunge position.", benefit: "Intense hip flexor stretch" },
       { name: "Frog Stretch", duration: "90 seconds", description: "On hands and knees, spread knees wide, sit back toward heels.", benefit: "Inner hip and groin flexibility" }
     ],
     upperBodyStretches: [
-      { name: "Doorway Chest Stretch", duration: "60 seconds each side", description: "Place forearm on doorframe at shoulder height, step through doorway. Vary arm height.", benefit: "Opens chest rounded from desk work, improves backswing" },
-      { name: "Cross-Body Shoulder Stretch", duration: "45 seconds each side", description: "Pull arm across chest with opposite hand, keep shoulders down.", benefit: "Increases shoulder flexibility for golf follow-through" },
+      { name: "Doorway Chest Stretch", duration: "60 seconds each side", description: "Place forearm on doorframe at shoulder height, step through doorway. Vary arm height.", benefit: "Opens chest rounded from desk work, improves posture" },
+      { name: "Cross-Body Shoulder Stretch", duration: "45 seconds each side", description: "Pull arm across chest with opposite hand, keep shoulders down.", benefit: "Increases shoulder flexibility and range of motion" },
       { name: "Neck Side Stretch", duration: "30 seconds each side", description: "Tilt head toward shoulder, use hand for gentle pressure. Keep shoulders relaxed.", benefit: "Relieves computer neck tension" },
-      { name: "Thread the Needle", duration: "45 seconds each side", description: "On hands and knees, reach arm under body and across. Rest on shoulder.", benefit: "Improves thoracic rotation for golf swing" },
+      { name: "Thread the Needle", duration: "45 seconds each side", description: "On hands and knees, reach arm under body and across. Rest on shoulder.", benefit: "Improves thoracic rotation and flexibility" },
       { name: "Triceps Stretch", duration: "45 seconds each side", description: "Reach arm overhead, bend elbow, use other hand to gently pull elbow.", benefit: "Shoulder and arm flexibility" },
       { name: "Eagle Arms", duration: "45 seconds each side", description: "Wrap arms around each other, lift elbows, feel stretch between shoulder blades.", benefit: "Upper back and shoulder mobility" },
       { name: "Lat Stretch", duration: "45 seconds each side", description: "Reach arm overhead, lean to opposite side, feel stretch along side body.", benefit: "Improves shoulder mobility and side bend" },
@@ -171,10 +171,10 @@ const StretchApp = () => {
           { name: "Leisure Walk", duration: "20-30 minutes", description: "Easy walk with good posture, relaxed breathing.", benefit: "Active recovery and mental reset" }
         ],
         cardio: [
-          { name: "Play 9 Holes", duration: "Walk the course", description: "Get out on the course, walk instead of cart, enjoy your improved fitness.", benefit: "Apply your training in real golf setting" },
+          { name: "Disc Golf", duration: "1-2 hours", description: "Play a round of disc golf, walking the course and practicing throws.", benefit: "Combines walking, skill practice, and upper body movement" },
           { name: "Light Kettlebell Complex", duration: "20 minutes easy pace", description: "Cycle through: 5 swings, 5 goblet squats, 5 presses, rest. Repeat leisurely.", benefit: "Maintain conditioning without intensity" },
           { name: "Yard Work or Active Hobby", duration: "30-60 minutes", description: "Gardening, washing car, playing with kids or pets, etc.", benefit: "Stay active while doing enjoyable activities" },
-          { name: "Recovery Walk with Dumbbells", duration: "15-20 minutes", description: "Light dumbbells, easy-paced walk in nature or neighborhood.", benefit: "Light activity to end the week" }
+          { name: "Nature Walk", duration: "30-45 minutes", description: "Relaxing walk in nature, focusing on recovery and enjoyment.", benefit: "Active recovery and mental reset" }
         ]
       }
     ];
@@ -448,7 +448,7 @@ const StretchApp = () => {
         <div className={`mt-8 rounded-xl shadow-xl p-6 text-white ${
           activeSection === 'stretches'
             ? 'bg-gradient-to-r from-green-600 to-blue-600'
-            : 'bg-gradient-to-r from-blue-600 to-purple-600'
+            : 'bg-gradient-to-r from-orange-500 to-red-600'
         }`}>
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
             <span>💡</span> {activeSection === 'stretches' ? 'Stretching' : 'Cardio Training'} Tips
