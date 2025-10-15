@@ -127,7 +127,7 @@ const StretchApp = () => {
     return [
       {
         day: "Monday - Lower Body Focus",
-        stretchFocus: "Hip mobility for golf rotation and desk relief",
+        stretchFocus: "Hip mobility and desk relief",
         cardioFocus: "Lower body kettlebell endurance",
         stretches: getRandomSelection(exerciseLibrary.lowerBodyStretches, 4, seededRandom),
         cardio: getRandomSelection(exerciseLibrary.lowerBodyCardio, 4, seededRandom)
@@ -148,7 +148,7 @@ const StretchApp = () => {
       },
       {
         day: "Thursday - Dynamic Mobility",
-        stretchFocus: "Golf-specific movement patterns",
+        stretchFocus: "Dynamic movement patterns",
         cardioFocus: "Full body conditioning",
         stretches: getRandomSelection(exerciseLibrary.dynamicStretches, 4, seededRandom),
         cardio: getRandomSelection(exerciseLibrary.fullBodyCardio, 4, seededRandom)
@@ -166,7 +166,7 @@ const StretchApp = () => {
         cardioFocus: "Fun activity day",
         stretches: [
           { name: "Your Top 3 Favorite Stretches", duration: "2 minutes each", description: "Choose any 3 stretches from the week that felt best or target your tight areas.", benefit: "Personalized flexibility maintenance" },
-          { name: "Golf Practice with Focus", duration: "15-20 minutes", description: "Practice swings focusing on your improved range of motion. Start slow.", benefit: "Integrate flexibility gains into golf technique" },
+          { name: "Movement Practice", duration: "15-20 minutes", description: "Practice fluid movements focusing on your improved range of motion. Start slow.", benefit: "Integrate flexibility gains into daily movement" },
           { name: "Foam Rolling Optional", duration: "10 minutes", description: "Roll IT bands, glutes, upper back, and lats slowly.", benefit: "Enhances flexibility and recovery" },
           { name: "Leisure Walk", duration: "20-30 minutes", description: "Easy walk with good posture, relaxed breathing.", benefit: "Active recovery and mental reset" }
         ],
@@ -479,7 +479,7 @@ const StretchApp = () => {
             About Your Program Rotation
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed mb-2">
-            Your exercises automatically rotate every 6 weeks from a library of 100+ activities. Each week you get fresh combinations while maintaining focus on your goals: office posture relief and golf performance.
+            Your exercises automatically rotate every 6 weeks from a library of 100+ activities. Each week you get fresh combinations while maintaining focus on your goals: improved flexibility, strength, and overall wellness.
           </p>
           <p className="text-gray-600 text-sm">
             <strong>Current cycle:</strong> Week {currentWeek} - Click "New 6-Week Cycle" above to manually refresh your exercises anytime.
