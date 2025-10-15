@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, Check, Clock, Target, Calendar, Heart, Dumbbell, RotateCw, Trophy } from 'lucide-react';
+import { RefreshCw, Check, Clock, Target, Calendar, Heart, Dumbbell, RotateCw, Trophy, HelpCircle, X } from 'lucide-react';
 
 const StretchApp = () => {
   const [currentDay, setCurrentDay] = useState(0);
@@ -9,6 +9,7 @@ const StretchApp = () => {
   const [showCheckmark, setShowCheckmark] = useState({});
   const [currentWeek, setCurrentWeek] = useState(1);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const exerciseLibrary = {
     lowerBodyStretches: [
@@ -313,15 +314,75 @@ const StretchApp = () => {
       )}
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <Target className="w-10 h-10 text-blue-600" />
-            <h1 className="text-4xl font-bold text-gray-800">Daily Fitness Routine</h1>
+          <div className="flex items-center justify-between px-4 mb-2">
+            <div className="flex items-center gap-3">
+              <Target className="w-10 h-10 text-blue-600" />
+              <h1 className="text-4xl font-bold text-gray-800">Daily Fitness Routine</h1>
+            </div>
+            <button 
+              onClick={() => setShowInfo(true)}
+              className="p-2 rounded-full hover:bg-blue-50 transition-colors"
+              aria-label="Show app information"
+            >
+              <HelpCircle className="w-6 h-6 text-blue-600" />
+            </button>
           </div>
           <p className="text-gray-600 text-lg">Flexibility + Cardio Strength for Better Health</p>
           <div className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-500">
             <RotateCw className="w-4 h-4" />
             <span>Cycle {currentWeek} - New exercises every 6 weeks</span>
           </div>
+          
+          {showInfo && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+              <div className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl relative">
+                <button 
+                  onClick={() => setShowInfo(false)}
+                  className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Close information"
+                >
+                  <X className="w-6 h-6 text-gray-500" />
+                </button>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">How to Use This App</h2>
+                <div className="space-y-4 text-gray-600">
+                  <section>
+                    <h3 className="font-bold text-lg mb-2">Daily Program</h3>
+                    <p>Each day features a specialized focus with stretches and cardio exercises. The app automatically shows today's program, but you can access any day's workout.</p>
+                  </section>
+                  <section>
+                    <h3 className="font-bold text-lg mb-2">Tracking Progress</h3>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Click exercises to mark them as complete</li>
+                      <li>Progress bars show your daily completion</li>
+                      <li>A celebration appears when you complete all exercises</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h3 className="font-bold text-lg mb-2">Weekly Cycles</h3>
+                    <p>The program changes every 6 weeks to keep your routine fresh and challenging. Use the refresh button to start a new cycle, or reset to begin from week 1.</p>
+                  </section>
+                  <section>
+                    <h3 className="font-bold text-lg mb-2">Exercise Details</h3>
+                    <p>Each exercise includes:</p>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Detailed instructions</li>
+                      <li>Duration recommendations</li>
+                      <li>Benefits and focus areas</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h3 className="font-bold text-lg mb-2">Tips</h3>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Always warm up before starting exercises</li>
+                      <li>Follow the recommended durations</li>
+                      <li>Listen to your body and modify as needed</li>
+                      <li>Stay consistent with your routine</li>
+                    </ul>
+                  </section>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
