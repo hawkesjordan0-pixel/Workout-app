@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, Check, Clock, Target, Calendar, Heart, Dumbbell, RotateCw, Trophy, HelpCircle, X } from 'lucide-react';
+import { RefreshCw, Check, Clock, Target, Calendar, Heart, Dumbbell, RotateCw, Trophy, HelpCircle, X, Shuffle, Undo2 } from 'lucide-react';
 
 const StretchApp = () => {
   const [currentDay, setCurrentDay] = useState(0);
@@ -10,6 +10,9 @@ const StretchApp = () => {
   const [currentWeek, setCurrentWeek] = useState(1);
   const [showCelebration, setShowCelebration] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [stretchCount, setStretchCount] = useState(4);
+  const [cardioCount, setCardioCount] = useState(4);
+  const [previousActivities, setPreviousActivities] = useState({});
 
   const exerciseLibrary = {
     lowerBodyStretches: [
@@ -172,29 +175,29 @@ const StretchApp = () => {
         day: "Monday - Lower Body Focus",
         stretchFocus: "Hip mobility and desk relief",
         cardioFocus: "Lower body kettlebell endurance",
-        stretches: getRandomSelection(exerciseLibrary.lowerBodyStretches, 4, seededRandom),
-        cardio: getRandomSelection(exerciseLibrary.lowerBodyCardio, 4, seededRandom)
+        stretches: getRandomSelection(exerciseLibrary.lowerBodyStretches, stretchCount, seededRandom),
+        cardio: getRandomSelection(exerciseLibrary.lowerBodyCardio, cardioCount, seededRandom)
       },
       {
         day: "Tuesday - Upper Body & Shoulders",
         stretchFocus: "Shoulder mobility and posture correction",
         cardioFocus: "Upper body strength endurance",
-        stretches: getRandomSelection(exerciseLibrary.upperBodyStretches, 4, seededRandom),
-        cardio: getRandomSelection(exerciseLibrary.upperBodyCardio, 4, seededRandom)
+        stretches: getRandomSelection(exerciseLibrary.upperBodyStretches, stretchCount, seededRandom),
+        cardio: getRandomSelection(exerciseLibrary.upperBodyCardio, cardioCount, seededRandom)
       },
       {
         day: "Wednesday - Spine & Core",
         stretchFocus: "Rotational mobility and spinal health",
         cardioFocus: "Core endurance and rotation",
-        stretches: getRandomSelection(exerciseLibrary.spineStretches, 4, seededRandom),
-        cardio: getRandomSelection(exerciseLibrary.coreCardio, 4, seededRandom)
+        stretches: getRandomSelection(exerciseLibrary.spineStretches, stretchCount, seededRandom),
+        cardio: getRandomSelection(exerciseLibrary.coreCardio, cardioCount, seededRandom)
       },
       {
         day: "Thursday - Dynamic Mobility",
         stretchFocus: "Dynamic movement patterns",
         cardioFocus: "Full body conditioning",
-        stretches: getRandomSelection(exerciseLibrary.dynamicStretches, 4, seededRandom),
-        cardio: getRandomSelection(exerciseLibrary.fullBodyCardio, 4, seededRandom)
+        stretches: getRandomSelection(exerciseLibrary.dynamicStretches, stretchCount, seededRandom),
+        cardio: getRandomSelection(exerciseLibrary.fullBodyCardio, cardioCount, seededRandom)
       },
       {
         day: "Friday - Recovery & Flexibility",
@@ -207,18 +210,34 @@ const StretchApp = () => {
         day: "Weekend - Active Choice",
         stretchFocus: "Personalized routine and practice",
         cardioFocus: "Fun activity day",
-        stretches: [
+        stretches: getRandomSelection([
           { name: "Your Top 3 Favorite Stretches", duration: "2 minutes each", description: "Choose any 3 stretches from the week that felt best or target your tight areas.", benefit: "Personalized flexibility maintenance" },
           { name: "Movement Practice", duration: "15-20 minutes", description: "Practice fluid movements focusing on your improved range of motion. Start slow.", benefit: "Integrate flexibility gains into daily movement" },
           { name: "Foam Rolling Optional", duration: "10 minutes", description: "Roll IT bands, glutes, upper back, and lats slowly.", benefit: "Enhances flexibility and recovery" },
-          { name: "Leisure Walk", duration: "20-30 minutes", description: "Easy walk with good posture, relaxed breathing.", benefit: "Active recovery and mental reset" }
-        ],
-        cardio: [
+          { name: "Leisure Walk", duration: "20-30 minutes", description: "Easy walk with good posture, relaxed breathing.", benefit: "Active recovery and mental reset" },
+          { name: "Gentle Sun Salutations", duration: "15 minutes", description: "Flow through basic yoga poses at a comfortable pace.", benefit: "Full-body mobility and mindful movement" },
+          { name: "Self-Massage Session", duration: "10-15 minutes", description: "Use foam roller, massage balls, or hands to work on tight areas.", benefit: "Targeted tension release" },
+          { name: "Joint Mobility Flow", duration: "10 minutes", description: "Move each joint through its full range of motion.", benefit: "Maintains joint health and prevents stiffness" },
+          { name: "Stretching Exploration", duration: "15-20 minutes", description: "Try new stretches or variations of familiar ones.", benefit: "Discover new ways to improve flexibility" }
+        ], stretchCount, seededRandom),
+        cardio: getRandomSelection([
           { name: "Disc Golf", duration: "1-2 hours", description: "Play a round of disc golf, walking the course and practicing throws.", benefit: "Combines walking, skill practice, and upper body movement" },
           { name: "Light Kettlebell Complex", duration: "20 minutes easy pace", description: "Cycle through: 5 swings, 5 goblet squats, 5 presses, rest. Repeat leisurely.", benefit: "Maintain conditioning without intensity" },
           { name: "Yard Work or Active Hobby", duration: "30-60 minutes", description: "Gardening, washing car, playing with kids or pets, etc.", benefit: "Stay active while doing enjoyable activities" },
-          { name: "Nature Walk", duration: "30-45 minutes", description: "Relaxing walk in nature, focusing on recovery and enjoyment.", benefit: "Active recovery and mental reset" }
-        ]
+          { name: "Nature Walk", duration: "30-45 minutes", description: "Relaxing walk in nature, focusing on recovery and enjoyment.", benefit: "Active recovery and mental reset" },
+          { name: "Recreational Swimming", duration: "30-45 minutes", description: "Easy laps or water play, focus on enjoyment over intensity.", benefit: "Full-body, low-impact exercise with natural resistance" },
+          { name: "Bike Ride", duration: "45-60 minutes", description: "Casual cycling on local trails or neighborhood streets.", benefit: "Low-impact cardio with scenic enjoyment" },
+          { name: "Dance Session", duration: "20-30 minutes", description: "Put on favorite music and dance freely, no structure needed.", benefit: "Fun cardiovascular activity that improves mood and coordination" },
+          { name: "Basketball Shootaround", duration: "30-45 minutes", description: "Casual basketball shooting and dribbling practice.", benefit: "Combines skill practice with light cardio movement" },
+          { name: "Kayaking/Paddling", duration: "1-2 hours", description: "Peaceful water activity at your own pace.", benefit: "Upper body endurance with nature connection" },
+          { name: "Tennis Rally", duration: "45-60 minutes", description: "Casual tennis with a partner, focus on rallying not competition.", benefit: "Hand-eye coordination and varied movement patterns" },
+          { name: "Golf Walking", duration: "2-4 hours", description: "Play a round of golf walking the course, no cart.", benefit: "Extended low-intensity activity with skill practice" },
+          { name: "Rock Climbing (Indoor)", duration: "1-2 hours", description: "Beginner-friendly bouldering or top-rope climbing.", benefit: "Full-body workout with problem-solving elements" },
+          { name: "Yoga in the Park", duration: "45-60 minutes", description: "Take your mat outside for a gentle flow in nature.", benefit: "Combines mindfulness with outdoor activity" },
+          { name: "Beach Activities", duration: "1-2 hours", description: "Walking, frisbee, or beach volleyball at a casual pace.", benefit: "Various movements on challenging sand surface" },
+          { name: "Table Tennis", duration: "30-45 minutes", description: "Friendly ping-pong games focusing on longer rallies.", benefit: "Quick reflexes and light cardio in a fun format" },
+          { name: "Hiking", duration: "1-3 hours", description: "Choose a trail that matches your energy level for the day.", benefit: "Varied terrain for natural intensity changes" }
+        ], cardioCount, seededRandom)
       }
     ];
   };
@@ -237,6 +256,11 @@ const StretchApp = () => {
     setCurrentWeek(weekNumber);
     setDailyPrograms(generateWeeklyProgram(weekNumber));
   }, []);
+
+  // Update program when exercise counts change
+  useEffect(() => {
+    setDailyPrograms(generateWeeklyProgram(currentWeek));
+  }, [stretchCount, cardioCount]);
 
   const refreshProgram = () => {
     const newWeek = currentWeek + 1;
@@ -290,6 +314,162 @@ const StretchApp = () => {
       setTimeout(() => {
         setShowCelebration(false);
       }, 3000);
+    }
+  };
+
+  const shuffleActivity = (dayIndex, activityIndex, type) => {
+    const newPrograms = [...dailyPrograms];
+    const currentActivities = type === 'stretch' 
+      ? [...newPrograms[dayIndex].stretches]
+      : [...newPrograms[dayIndex].cardio];
+    
+    // Check if the current activity is completed
+    const isCompleted = type === 'stretch' 
+      ? completedStretches.includes(activityIndex)
+      : completedCardio.includes(activityIndex);
+    
+    // Save the current activity and completion status before replacing it
+    const key = `${dayIndex}-${activityIndex}-${type}`;
+    setPreviousActivities(prev => ({
+      ...prev,
+      [key]: { 
+        activity: { ...currentActivities[activityIndex] },
+        wasCompleted: isCompleted
+      }
+    }));
+    
+    // Determine which exercise library to use based on the day
+    let sourceLibrary;
+    const dayName = newPrograms[dayIndex].day;
+    
+    if (type === 'stretch') {
+      if (dayName.includes('Monday')) sourceLibrary = exerciseLibrary.lowerBodyStretches;
+      else if (dayName.includes('Tuesday')) sourceLibrary = exerciseLibrary.upperBodyStretches;
+      else if (dayName.includes('Wednesday')) sourceLibrary = exerciseLibrary.spineStretches;
+      else if (dayName.includes('Thursday')) sourceLibrary = exerciseLibrary.dynamicStretches;
+      else if (dayName.includes('Friday')) sourceLibrary = exerciseLibrary.recoveryStretches;
+      else sourceLibrary = [
+        { name: "Your Top 3 Favorite Stretches", duration: "2 minutes each", description: "Choose any 3 stretches from the week that felt best or target your tight areas.", benefit: "Personalized flexibility maintenance" },
+        { name: "Movement Practice", duration: "15-20 minutes", description: "Practice fluid movements focusing on your improved range of motion. Start slow.", benefit: "Integrate flexibility gains into daily movement" },
+        { name: "Foam Rolling Optional", duration: "10 minutes", description: "Roll IT bands, glutes, upper back, and lats slowly.", benefit: "Enhances flexibility and recovery" },
+        { name: "Leisure Walk", duration: "20-30 minutes", description: "Easy walk with good posture, relaxed breathing.", benefit: "Active recovery and mental reset" },
+        { name: "Gentle Sun Salutations", duration: "15 minutes", description: "Flow through basic yoga poses at a comfortable pace.", benefit: "Full-body mobility and mindful movement" },
+        { name: "Self-Massage Session", duration: "10-15 minutes", description: "Use foam roller, massage balls, or hands to work on tight areas.", benefit: "Targeted tension release" },
+        { name: "Joint Mobility Flow", duration: "10 minutes", description: "Move each joint through its full range of motion.", benefit: "Maintains joint health and prevents stiffness" },
+        { name: "Stretching Exploration", duration: "15-20 minutes", description: "Try new stretches or variations of familiar ones.", benefit: "Discover new ways to improve flexibility" }
+      ];
+    } else {
+      if (dayName.includes('Monday')) sourceLibrary = exerciseLibrary.lowerBodyCardio;
+      else if (dayName.includes('Tuesday')) sourceLibrary = exerciseLibrary.upperBodyCardio;
+      else if (dayName.includes('Wednesday')) sourceLibrary = exerciseLibrary.coreCardio;
+      else if (dayName.includes('Thursday')) sourceLibrary = exerciseLibrary.fullBodyCardio;
+      else if (dayName.includes('Friday')) sourceLibrary = exerciseLibrary.activeRecovery;
+      else sourceLibrary = [
+        { name: "Disc Golf", duration: "1-2 hours", description: "Play a round of disc golf, walking the course and practicing throws.", benefit: "Combines walking, skill practice, and upper body movement" },
+        { name: "Light Kettlebell Complex", duration: "20 minutes easy pace", description: "Cycle through: 5 swings, 5 goblet squats, 5 presses, rest. Repeat leisurely.", benefit: "Maintain conditioning without intensity" },
+        { name: "Yard Work or Active Hobby", duration: "30-60 minutes", description: "Gardening, washing car, playing with kids or pets, etc.", benefit: "Stay active while doing enjoyable activities" },
+        { name: "Nature Walk", duration: "30-45 minutes", description: "Relaxing walk in nature, focusing on recovery and enjoyment.", benefit: "Active recovery and mental reset" },
+        { name: "Recreational Swimming", duration: "30-45 minutes", description: "Easy laps or water play, focus on enjoyment over intensity.", benefit: "Full-body, low-impact exercise with natural resistance" },
+        { name: "Bike Ride", duration: "45-60 minutes", description: "Casual cycling on local trails or neighborhood streets.", benefit: "Low-impact cardio with scenic enjoyment" },
+        { name: "Dance Session", duration: "20-30 minutes", description: "Put on favorite music and dance freely, no structure needed.", benefit: "Fun cardiovascular activity that improves mood and coordination" },
+        { name: "Basketball Shootaround", duration: "30-45 minutes", description: "Casual basketball shooting and dribbling practice.", benefit: "Combines skill practice with light cardio movement" },
+        { name: "Kayaking/Paddling", duration: "1-2 hours", description: "Peaceful water activity at your own pace.", benefit: "Upper body endurance with nature connection" },
+        { name: "Tennis Rally", duration: "45-60 minutes", description: "Casual tennis with a partner, focus on rallying not competition.", benefit: "Hand-eye coordination and varied movement patterns" },
+        { name: "Golf Walking", duration: "2-4 hours", description: "Play a round of golf walking the course, no cart.", benefit: "Extended low-intensity activity with skill practice" },
+        { name: "Rock Climbing (Indoor)", duration: "1-2 hours", description: "Beginner-friendly bouldering or top-rope climbing.", benefit: "Full-body workout with problem-solving elements" },
+        { name: "Yoga in the Park", duration: "45-60 minutes", description: "Take your mat outside for a gentle flow in nature.", benefit: "Combines mindfulness with outdoor activity" },
+        { name: "Beach Activities", duration: "1-2 hours", description: "Walking, frisbee, or beach volleyball at a casual pace.", benefit: "Various movements on challenging sand surface" },
+        { name: "Table Tennis", duration: "30-45 minutes", description: "Friendly ping-pong games focusing on longer rallies.", benefit: "Quick reflexes and light cardio in a fun format" },
+        { name: "Hiking", duration: "1-3 hours", description: "Choose a trail that matches your energy level for the day.", benefit: "Varied terrain for natural intensity changes" }
+      ];
+    }
+    
+    // Filter out exercises that are already in the current day's list
+    const currentNames = currentActivities.map(ex => ex.name);
+    const availableExercises = sourceLibrary.filter(ex => !currentNames.includes(ex.name));
+    
+    // If there are no more unique exercises, allow repeating
+    const exercisePool = availableExercises.length > 0 ? availableExercises : sourceLibrary;
+    
+    // Pick a random exercise
+    const randomIndex = Math.floor(Math.random() * exercisePool.length);
+    const newActivity = exercisePool[randomIndex];
+    
+    // Create new programs array with immutable update
+    const updatedPrograms = dailyPrograms.map((program, pIdx) => {
+      if (pIdx !== dayIndex) return program;
+      
+      if (type === 'stretch') {
+        return {
+          ...program,
+          stretches: program.stretches.map((stretch, sIdx) => 
+            sIdx === activityIndex ? newActivity : stretch
+          )
+        };
+      } else {
+        return {
+          ...program,
+          cardio: program.cardio.map((cardio, cIdx) => 
+            cIdx === activityIndex ? newActivity : cardio
+          )
+        };
+      }
+    });
+    
+    setDailyPrograms(updatedPrograms);
+    
+    // Remove completion status for the shuffled activity
+    if (type === 'stretch') {
+      setCompletedStretches(prev => prev.filter(idx => idx !== activityIndex));
+    } else {
+      setCompletedCardio(prev => prev.filter(idx => idx !== activityIndex));
+    }
+  };
+
+  const undoShuffle = (dayIndex, activityIndex, type) => {
+    const key = `${dayIndex}-${activityIndex}-${type}`;
+    const previousData = previousActivities[key];
+    
+    if (previousData) {
+      const { activity: previousActivity, wasCompleted } = previousData;
+      
+      const newPrograms = dailyPrograms.map((program, pIdx) => {
+        if (pIdx !== dayIndex) return program;
+        
+        if (type === 'stretch') {
+          return {
+            ...program,
+            stretches: program.stretches.map((stretch, sIdx) => 
+              sIdx === activityIndex ? { ...previousActivity } : stretch
+            )
+          };
+        } else {
+          return {
+            ...program,
+            cardio: program.cardio.map((cardio, cIdx) => 
+              cIdx === activityIndex ? { ...previousActivity } : cardio
+            )
+          };
+        }
+      });
+      
+      setDailyPrograms(newPrograms);
+      
+      // Restore completion status if it was completed
+      if (wasCompleted) {
+        if (type === 'stretch') {
+          setCompletedStretches(prev => [...prev, activityIndex]);
+        } else {
+          setCompletedCardio(prev => [...prev, activityIndex]);
+        }
+      }
+      
+      // Remove the saved previous activity
+      setPreviousActivities(prev => {
+        const newPrev = { ...prev };
+        delete newPrev[key];
+        return newPrev;
+      });
     }
   };
 
@@ -434,8 +614,46 @@ const StretchApp = () => {
                 }`}
               >
                 <Heart className="w-5 h-5" />
-                Cardio (~130 BPM)
+                Cardio
               </button>
+            </div>
+            <div className="flex gap-4 justify-center mt-4">
+              <div className="flex items-center gap-2">
+                <label htmlFor="stretchCount" className="text-sm font-medium text-gray-600">
+                  Daily Stretches:
+                </label>
+                <select
+                  id="stretchCount"
+                  value={stretchCount}
+                  onChange={(e) => {
+                    setStretchCount(Number(e.target.value));
+                    setCompletedStretches([]);
+                  }}
+                  className="px-2 py-1 rounded border border-gray-300 bg-white text-gray-700 text-sm"
+                >
+                  {[2, 3, 4, 5].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex items-center gap-2">
+                <label htmlFor="cardioCount" className="text-sm font-medium text-gray-600">
+                  Daily Cardio:
+                </label>
+                <select
+                  id="cardioCount"
+                  value={cardioCount}
+                  onChange={(e) => {
+                    setCardioCount(Number(e.target.value));
+                    setCompletedCardio([]);
+                  }}
+                  className="px-2 py-1 rounded border border-gray-300 bg-white text-gray-700 text-sm"
+                >
+                  {[2, 3, 4, 5].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 
@@ -525,18 +743,42 @@ const StretchApp = () => {
                       <span className="font-semibold text-gray-800">How to:</span> {activity.description}
                     </p>
                     
-                    <div className={`rounded-lg p-4 border-l-4 ${
-                      activeSection === 'stretches'
-                        ? 'bg-gradient-to-r from-blue-50 to-green-50 border-green-500'
-                        : 'bg-gradient-to-r from-orange-50 to-red-50 border-orange-500'
-                    }`}>
-                      <p className="text-sm font-medium text-gray-700">
-                        <span className={`font-bold ${
-                          activeSection === 'stretches' ? 'text-green-700' : 'text-orange-700'
-                        }`}>
-                          💪 Why:
-                        </span> {activity.benefit}
-                      </p>
+                    <div className="flex items-start gap-3">
+                      <div className={`flex-1 rounded-lg p-4 border-l-4 ${
+                        activeSection === 'stretches'
+                          ? 'bg-gradient-to-r from-blue-50 to-green-50 border-green-500'
+                          : 'bg-gradient-to-r from-orange-50 to-red-50 border-orange-500'
+                      }`}>
+                        <p className="text-sm font-medium text-gray-700">
+                          <span className={`font-bold ${
+                            activeSection === 'stretches' ? 'text-green-700' : 'text-orange-700'
+                          }`}>
+                            💪 Why:
+                          </span> {activity.benefit}
+                        </p>
+                      </div>
+                      
+                      <div className="flex flex-col gap-2 flex-shrink-0">
+                        <button
+                          onClick={() => shuffleActivity(currentDay, index, activeSection === 'stretches' ? 'stretch' : 'cardio')}
+                          className="flex items-center justify-center w-9 h-9 rounded-full transition-all shadow-sm hover:shadow-md bg-blue-100 text-blue-600 hover:bg-blue-200"
+                          title="Shuffle to a different exercise"
+                        >
+                          <Shuffle className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => undoShuffle(currentDay, index, activeSection === 'stretches' ? 'stretch' : 'cardio')}
+                          disabled={!previousActivities[`${currentDay}-${index}-${activeSection === 'stretches' ? 'stretch' : 'cardio'}`]}
+                          className={`flex items-center justify-center w-9 h-9 rounded-full transition-all shadow-sm ${
+                            previousActivities[`${currentDay}-${index}-${activeSection === 'stretches' ? 'stretch' : 'cardio'}`]
+                              ? 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:shadow-md cursor-pointer'
+                              : 'bg-gray-50 text-gray-300 cursor-not-allowed'
+                          }`}
+                          title={previousActivities[`${currentDay}-${index}-${activeSection === 'stretches' ? 'stretch' : 'cardio'}`] ? "Undo shuffle" : "No shuffle to undo"}
+                        >
+                          <Undo2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
