@@ -434,7 +434,7 @@ const StretchApp = () => {
                 }`}
               >
                 <Heart className="w-5 h-5" />
-                Cardio (~130 BPM)
+                Cardio
               </button>
             </div>
           </div>
